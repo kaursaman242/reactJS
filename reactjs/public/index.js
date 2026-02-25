@@ -11,7 +11,7 @@ const Resume = () => {
         </nav>
         <div className="data-div">
           <h1>Samandeep Kaur</h1><br></br>
-          <p>Aspiring Web Developer | Student</p><br></br>
+          <p>Aspiring Engineer | Student</p><br></br>
           <p>Email:kaursaman242@gmail.com | Phone: +91 7657827262</p>
 
           <div className="line-div"></div>

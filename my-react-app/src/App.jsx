@@ -1,84 +1,96 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from 'react'
+import { Link, Outlet, Route, Routes } from 'react-router'
+import HomePage from './HomePage'
+import About from './About'
+import Varient from './Varient'
+import Contact from './Contact'
 
 function App() {
-  const Section = ({ title, children }) => {
-  return (
-    <div className="mb-6">
-      <h2 className="text-pink-600 font-semibold mb-2">{title}</h2>
-      {children}
-    </div>
-  );
-};
 
   return (
-    <div className="bg-rose-50 min-h-screen flex items-center justify-center p-6">
-      <div className="bg-white w-200 rounded-2xl shadow-lg p-8">
-
-        <div className="flex gap-[400px]">
-          <div className="border-b pb-4 mb-6 border-gray-300">
-            <h1 className="text-3xl font-bold">Samandeep Kaur</h1>
-            <p className="text-pink-600 font-medium">Aspiring Web Developement</p>
-            <div className="text-sm text-gray-600 mt-2">
-              <p>📞 75782762</p>
-              <p>📧 kaursaman@gmail.com</p>
-              <p>📍 Khadur Sahib, Tarn Taran, Punjab</p>
-            </div>
-          </div>
-
-          <div>
-            <img className="w-28 h-28 rounded-full object-cover justify-center"
-              src="\images\passport-img.jpeg" alt=""></img>
-          </div>
-        </div>
-
-
-        <div className="flex gap-8">
-          <div className="w-1/3 border-r pr-6 border-gray-300">
-            <Section title="Skills">
-              <ul className="list-disc ml-4 space-y-1">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>Tailwind CSS</li>
-                <li>Responsive Design</li>
-                <li>UI Basics</li>
-              </ul>
-            </Section>
-          </div>
-
-          <div className="w-2/3">
-            <Section title="About Me">
-              <p>
-                Motivated aspiring web developement with strong skills in modern
-                frontend technologies.
-              </p>
-            </Section>
-
-            <Section title="Education">
-              <p className="font-medium">12th Grade — PSEB Board</p>
-              <p>Baba Gurmukh Singh Baba Uttam Singh Senior Secondary School</p>
-              <p>2022</p><br />
-              <p className="font-medium">BCA (Bacholer of Computer Application) - GNDU University</p>
-              <p>SGAD College,Khadur Sahib</p>
-              <p>2025</p>
-            </Section>
-
-            <Section title="Projects">
-              <ul className="list-disc ml-4 space-y-1">
-                <li>Pet Adoption Website</li>
-                <li>Boutique UI Design</li>
-                <li>UI Components Practice</li>
-              </ul>
-            </Section>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    <Routes>
+      <Route element={<Layout/>}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/varient" element={<Varient />} />
+      </Route>
+    </Routes>
+  )
 }
- 
 
 export default App
+
+const NavBar = () => {
+  return (
+    <nav className="bg-slate-800 text-white px-6 py-4 flex gap-6">
+      <Link to="/" className="hover:text-blue-400 transition-colors">Home</Link>
+      <Link to="/contact" className="hover:text-blue-400 transition-colors">Contact</Link>
+      <Link to="/about" className="hover:text-blue-400 transition-colors">About</Link>
+      <Link to="/varient" className="hover:text-blue-400 transition-colors">Varient</Link>
+    </nav>
+  )
+}
+
+const Footer = () => {
+  return (
+    <footer className="bg-slate-800 text-white px-6 py-4 flex gap-6 mt-auto">
+      <Link to="/about" className="hover:text-blue-400 transition-colors">About</Link>
+      <Link to="/contact" className="hover:text-blue-400 transition-colors">Contact 3</Link>
+    </footer>
+  )
+}
+
+const Layout = ({ children }) => {
+
+  useEffect(() => {
+    console.log("Layout mounted")
+    return () => {
+      console.log("Layout unmounted")
+    }
+  }, [])
+
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-100">
+      <NavBar />
+      <main className="flex-1 p-6">
+        <Outlet/>
+      </main>
+      <Footer />
+    </div>
+  )
+}
+
+// const HomePage = () => {
+//   return (
+//     <>
+//       <h1 className="text-3xl font-bold text-slate-800">welcome</h1>
+//       <h1 className="text-3xl font-bold text-slate-800">to HomePage</h1>
+//       <h1 className="text-3xl font-bold text-slate-800">pelase explore</h1>
+//     </>
+//   )
+// }
+
+const Page1 = () => {
+  return (
+    <>
+      <h1 className="text-3xl font-bold text-slate-800">Page 1</h1>
+    </>
+  )
+}
+
+const Page2 = () => {
+  return (
+    <>
+      <h1 className="text-3xl font-bold text-red-800">Page 2</h1>
+    </>
+  )
+}
+
+const Page3 = () => {
+  return (
+    <>
+      <h1 className="text-3xl font-bold text-blue-800">Page 3</h1>
+    </>
+  )
+}
